@@ -1,0 +1,86 @@
+<body>
+  <router-outlet></router-outlet>
+
+      <!-- Navbar -->
+      <div  class="w3-top">
+        <div class="w3-bar  w3-card w3-left-align  nav">
+          <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+          <a routerLink="/home"  class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        </div>
+      </div>
+  <div class="container">
+    <div style="text-align: center">
+      <h2>Contact <span style="color: rgba(106, 17, 203, 1)">Us.</span></h2>
+    </div>
+
+    <div id="socail">
+      <!-- Instagram -->
+      <a
+      target="_blank"
+        class="btn btn-primary"
+        style="background-color: #ac2bac"
+        href="https://www.instagram.com/hani_gaith/"
+        role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <!-- Github -->
+      <a
+      target="_blank"
+        class="btn btn-primary"
+        style="background-color: #333333"
+        href="https://github.com/n3san07"
+        role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+      <!-- Whatsapp -->
+      <a
+      target="_blank"
+        class="btn btn-primary"
+        style="background-color: #25d366"
+        href="http://wa.me/972549966867"
+        role="button"
+        ><i class="fab fa-whatsapp"></i
+      ></a>
+    </div>
+    <div class="row">
+      <div class="column">
+        <img
+          src="https://i.ibb.co/ct2msmv/Whats-App-Image-2023-02-23-at-12-17-35.jpg"
+          style="width: 100%"
+        />
+      </div>
+      <div class="column">
+        <form action="/action_page.php">
+          <label for="fname">First Name</label>
+          <input
+            type="text"
+            id="fname"
+            name="firstname"
+            placeholder="Your name.."
+          />
+          <label for="lname">Last Name</label>
+          <input
+            type="text"
+            id="lname"
+            name="lastname"
+            placeholder="Your last name.."
+          />
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+          <label for="subject">Subject</label>
+          <textarea
+            id="subject"
+            name="subject"
+            placeholder="Write something.."
+            style="height: 170px"
+          ></textarea>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

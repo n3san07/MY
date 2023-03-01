@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+body{
+  text-transform: capitalize;
+}
+
+button{
+    margin: 3px 8px;
+}
+nav{
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background-size: 200%;
+    animation: navAnimation infinite 3s  ease alternate;
+
+}
+.navbar-brand{
+    font-size: 30PX;
+    font-weight: bolder;
+    font-family: 'Satisfy', cursive;
+margin-left: 10PX;
+color: white;
+}
+
+@keyframes navAnimation {
+0%{background-position: left;}
+100%{background-position:right;}
+}
+.nav-link{
+  color: white;
+}
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+#hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    height: 20%;
+}
+#hero h1{
+font-size: 80px;
+font-weight: bolder;
+color: black;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+#myImg{
+  width: 80PX;
+  border-radius: 30%;
+}
+
+.logOUT{
+  position:fixed;
+  bottom: 10%;
+}
+.add{
+  cursor: pointer;
+}
+.modal-title{
+  text-align: center;
+  color: #6a11cb;
+  width: 100%;
+  font-weight: bold;
+}
+
+.card {
+  background: #222;
+  border: 2.8px solid lightblue;
+  color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 2rem;
+}
+
+.card .btn {
+  border: 5px solid;
+  background-color: #6f38aa;
+  text-decoration: none;
+  transition: all .4s ease;
+}
+
+.card .btn:hover,.card .btn:focus {
+  border: 5px solid #fff !important; 
+  box-shadow: #222 1px 0 10px;
+  text-decoration: underline;
+}
+.card-body{
+  text-align: center;
+}
+.card-text{
+  max-height: 50px;
+  overflow: auto;
+}
+.displayMode{
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+@media screen and (max-width: 680px) {
+  .listTable{
+    padding: .2rem .2rem !important;
+    font-size: 8px !important;
+}
+.listTable>:not(caption)>*>*{
+padding: .2rem .2rem !important;
+}
+.listTable tbody button{
+margin: 0.5px !important; ;
+padding: 2px 2px !important;
+}
+
+}

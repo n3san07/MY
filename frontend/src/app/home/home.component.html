@@ -1,0 +1,324 @@
+<body *ngIf="utility.getUser()" >
+  <div class="d-flex" id="wrapper">
+      <!-- Sidebar-->
+      <div *ngIf="show"  class="border-end bg-white w3-animate-left	" id="sidebar-wrapper">
+          <div style="text-transform: capitalize;" class="sidebar-heading border-bottom bg-light"> <h2> <span style="color:#6a11cb;">HI</span> {{ utility.getUser()?.userName }} <i  style="color: red;" class="fa fa-heart w3-animate-fading "></i> </h2>
+          </div>
+          <div class="list-group list-group-flush">
+              <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="list-group-item list-group-item-action list-group-item-light p-3 add" > add New  <i class="fa fa-user-plus"></i></a>
+              <label style="color:#6a11cb;" class="displayMode" >displayMode : </label>
+
+              <div class="displayMode">
+                <label>
+                    <input [(ngModel)]="displayMode" class="w3-radio" type="radio" name="displayMode" value="list"> list
+                </label>
+                <label>
+                    <input [(ngModel)]="displayMode" class="w3-radio" type="radio" name="displayMode" value="cards"> cards
+                </label>
+            </div>
+           <br/>
+           <button (click)="ToTrashBin()" type="button" class="btn btn-success ">trashBin</button>
+
+              <div id="btns">
+                <button (click)="logout()" type="button" class="btn btn-danger logOUT">logOUT</button>
+              </div>
+          </div>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+          <!-- Top navigation-->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+              <div class="container-fluid">
+                  <button class="btn btn-primary"  (click)="myFunction()"  id="sidebarToggle"> Menu <i class="fa fa-layer-group"> </i> </button>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center;" >
+                      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                          <li class="nav-item active"><a class="nav-link"  (click)="backTOlist()" routerLink="/home">Home</a></li>
+                          <li class="nav-item"><a  routerLink="/contact" class="nav-link" >call us</a></li>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">social</a>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="text-align: center;" >
+                                  <a class="dropdown-item"  target="_blank" href="https://www.instagram.com/hani_gaith/ ">instagram   <i class="fa fa-instagram"  style="color:#ac2bac" ></i>  </a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" target="_blank" href="http://wa.me/972549966867">whatsapp   <i class="fa fa-whatsapp" style="color: green;" ></i></a>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+          <!-- Page content-->
+          <div class="container-fluid">
+            <main>
+              <div id="hero">
+                <img  id="myImg" src="https://i.ibb.co/ct2msmv/Whats-App-Image-2023-02-23-at-12-17-35.jpg" >
+                <h1  class="w3-hide-small w3-hide-medium" >royal crm</h1>
+                <div id="info">
+                  <h2>{{ today | date }}</h2>
+                  <div class="input-group" style="justify-content: center;"  >
+                    <div class="form-outline">
+                      <input type="search" id="form1" class="form-control" placeholder="Search" [(ngModel)]="term" style="text-align: center;" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <!------- list table style ----->
+            
+              <table class="table listTable"  style="margin-bottom: 100px !important;"  *ngIf="displayMode == 'list'">
+                <thead class="thead-dark">
+                  <tr >
+                    <th scope="col">#</th>
+                    <th class="w3-hide-small" scope="col"></th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">email</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">city</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  (dblclick)="opedEdit(customer)" *ngFor="let customer of allData |filter:term index as i ">
+                    <th scope="row">{{i+1}}</th>
+                    <img *ngIf="customer.gender == 'male'" src="https://www.w3schools.com/w3css/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:65px">
+                    <img *ngIf="customer.gender == 'female'" src="https://www.w3schools.com/w3css/img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:65px">
+                    <td>{{customer.firstname}}</td>
+                    <td>{{customer.lastname}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.city}}</td>
+                    <td><button class="w3-button w3-red"  (click)="Delete(customer)" >Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+          <!------- cards view style ----->
+
+              <div id="cards" *ngIf="displayMode == 'cards'" >
+                <div class="container mx-auto mt-4">
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let customer of allData |filter:term index as i "  >
+                      <div class="card" style="width: 18rem;">
+                  <img *ngIf="customer.gender == 'male'" src="https://www.w3schools.com/w3css/img_avatar2.png" class="card-img-top" alt="...">
+                  <img *ngIf="customer.gender == 'female'" src="https://www.w3schools.com/w3css/img_avatar5.png" class="card-img-top" alt="...">
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{customer.firstname}}</h5>
+                    <br>
+                    <p *ngIf="customer.info == ''" class="card-text">no info to view try to add some..</p>
+                    <p *ngIf="customer.info" class="card-text">{{customer.info}}</p>
+                       <button  class="btn mr-2" (click)="opedEdit(customer)" > Edit </button>
+                    <button  class="btn " (click)="Delete(customer)" >Delete</button>
+                  </div>
+                  </div>
+                    </div>    
+                </div>
+                  </div>
+                
+                
+              </div>
+
+                          <!------- trash view style ----->
+
+        <div  style="margin-bottom: 100px !important;" *ngIf="displayMode == 'trashBin'" >
+          <h1 class="w3-red w3-center" >trash Bin</h1>
+          <table class="table listTable">
+            <thead class="thead-dark">
+              <tr >
+                <th scope="col">#</th>
+                <th class="w3-hide-small" scope="col"></th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">email</th>
+                <th scope="col">phone</th>
+                <th scope="col">city</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let customer of deletedData |filter:term index as i ">
+                <th scope="row">{{i+1}}</th>
+                <img *ngIf="customer.gender == 'male'" src="https://www.w3schools.com/w3css/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:65px">
+                <img *ngIf="customer.gender == 'female'" src="https://www.w3schools.com/w3css/img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:65px">
+                <td>{{customer.firstname}}</td>
+                <td>{{customer.lastname}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.city}}</td>
+                <td><button class="w3-button w3-green"  (click)="Restore(customer)" >Restore</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+
+            </main>
+            
+          </div>
+      </div>
+  </div>
+<!-- footer -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © <span>{{ today | date:'yyyy' }}</span> Copyright:
+      <a class="text-dark" href="#">Hani Gath</a>
+    </div>
+  </footer>
+
+<!-- Modal for add customers -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h5 class="modal-title" id="exampleModalLabel">add a new customer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!---form start for add customers -->
+        <form  [formGroup]="addNewForm" class="row g-3">
+          <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationDefault01" formControlName="FirstName"  required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="validationDefault02" formControlName="LastName"  required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefaultUsername" class="form-label">email</label>
+              <input type="email" class="form-control" id="validationDefaultEmail"  formControlName="email" aria-describedby="inputGroupPrepend2" required>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationDefault03" formControlName="city" required>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault04" class="form-label">phone N.</label>
+            <input type="number" class="form-control" id="validationDefault04"  formControlName="phone" required>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault05" class="form-label">country</label>
+            <input type="text" class="form-control" id="validationDefault05"  formControlName="country" >
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault06" class="form-label">state</label>
+            <input type="text" class="form-control" id="validationDefault06" formControlName="state" >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault02" class="form-label">street</label>
+            <input type="text" class="form-control" id="validationDefault02" formControlName="street" >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault08" class="form-label">houseNumber</label>
+            <input type="number" class="form-control" id="validationDefault08" formControlName="houseNumber"  >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault05" class="form-label">Zip</label>
+            <input type="number" class="form-control" id="validationDefault05" formControlName="Zip"  >
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault09" class="form-label">gender</label>
+            <select class="form-select" id="validationDefault09" formControlName="gender" required>
+              <option selected  value="male">Choose...</option>
+              <option value="male" >male</option>
+              <option value="female" >female</option>
+            </select>
+          </div>
+                    <div class="col-md-8">
+            <textarea placeholder="if you have more info"  class="form-control"   cols="30" rows="10" formControlName="info" ></textarea>
+          </div>
+      
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit" [disabled]="!addNewForm.valid" (click)="addNew()" >ADD</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  id="closeModelBtn" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!----edit model ---- --->
+<button style="display: none;" id="editModalBtn"  data-bs-toggle="modal" data-bs-target="#editModal" class="list-group-item list-group-item-action list-group-item-light p-3" ></button>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h5 class="modal-title"  id="exampleModalLabel">edit customers</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"  >
+        <!---form start for add customers -->
+        <form   [formGroup]="editform" class="row g-3" >
+          <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationDefault01" [value]="editData.firstname" formControlName="FirstName"  >
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="validationDefault02" [value]="editData.lastname" formControlName="LastName"  >
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefaultUsername" class="form-label">email</label>
+              <input type="email" class="form-control" id="validationDefaultEmail" [value]="editData.email"  formControlName="email" aria-describedby="inputGroupPrepend2" >
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationDefault03" [value]="editData.city" formControlName="city" >
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault04" class="form-label">phone N.</label>
+            <input type="number" class="form-control" id="validationDefault04"  [value]="editData.phone" formControlName="phone" >
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault05" class="form-label">country</label>
+            <input type="text" class="form-control" id="validationDefault05"  [value]="editData.country" formControlName="country" >
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault06" class="form-label">state</label>
+            <input type="text" class="form-control" id="validationDefault06" [value]="editData.state" formControlName="state" >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault02" class="form-label">street</label>
+            <input type="text" class="form-control" id="validationDefault02" [value]="editData.street" formControlName="street" >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault08" class="form-label">houseNumber</label>
+            <input type="number" class="form-control" id="validationDefault08" [value]="editData.houseNumber" formControlName="houseNumber"  >
+          </div>
+          <div class="col-md-2">
+            <label for="validationDefault05" class="form-label">Zip</label>
+            <input type="number" class="form-control" id="validationDefault05" [value]="editData.Zip" formControlName="Zip"  >
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault09" class="form-label">gender</label>
+            <select class="form-select" id="validationDefault09" formControlName="gender" >
+              <option [selected]="editData.gender == 'male'"  value="male">Choose...</option>
+              <option [selected]="editData.gender == 'male'" value="male" >male</option>
+              <option [selected]="editData.gender == 'female'" value="female" >female</option>
+            </select>
+          </div>
+                    <div class="col-md-8">
+            <textarea placeholder="if you have more info"  class="form-control"   cols="30" rows="10" formControlName="info" ></textarea>
+          </div>
+      
+          <div class="col-12">
+            <button class="btn btn-primary" (click)="edit()"  type="submit" [disabled]="!editform.valid"  >edit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  id="closeModelBtn2" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<router-outlet></router-outlet>
