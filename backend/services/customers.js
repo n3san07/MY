@@ -38,6 +38,18 @@ export function removeCustomer(req, res) {
     }
   );
 }
+export function DropCustomer(req, res) {
+  con.query(
+    "DELETE FROM `customers` WHERE `id` = ?",
+    [req.params.id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send();
+    }
+  );
+}
 export function addCustomer(req, res) {
   con.query(
     "INSERT INTO `customers`(`FirstName`, `LastName`, `email`, `phone`, `state`, `country`, `city`, `street`, `housenumber`, `Zip`, `info`, `createdby`,`gender`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -115,7 +127,6 @@ export function Restore(req, res) {
   );
 }
 
-////// not working
 export function getTask(req, res) {
   con.query(
     "SELECT * FROM `tasks` WHERE `id` = ? AND `userId` = ?",
@@ -199,3 +210,24 @@ export function restoreTask(req, res) {
     }
   );
 }
+
+// still working on this function
+
+export function givePermissions(req, res) {
+ /* console.log(req.body);
+  con.query(
+    "UPDATE `users` SET  `isadmin` = ? WHERE `id` = ?",[req.body.id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send();
+    }
+  );*/
+}
+
+
+
+
+
+

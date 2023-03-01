@@ -6,6 +6,7 @@ import { UtilityService } from '../utility.service';
 import { customersData } from './data.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { __values } from 'tslib';
+import { User } from '../signup/user.interface';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
@@ -150,6 +151,16 @@ export class HomeComponent {
         });
     }
   }
+  Drop(data:any){
+    if (confirm('Are you sure to delete?')) {
+      const sub = this.http
+        .delete<void>(`Drop/${data.id}`)
+        .subscribe(() => {
+          sub.unsubscribe();
+        });
+        this.deletedData.splice(this.deletedData.indexOf(data), 1);
+    }
+  }
   ToTrashBin() {
     this.displayMode = 'trashBin';
   }
@@ -184,6 +195,16 @@ export class HomeComponent {
       });
   }
 
+
+
+  ///still working on  this function
+  givePermissions(user: any){
+let sub = this.http.post<string>(`givePermissions`, user).subscribe((x) => {
+  sub.unsubscribe();
+})
+
+  }
+
   constructor(
     public utility: UtilityService,
     public http: HttpService,
@@ -203,5 +224,6 @@ export class HomeComponent {
         this.deletedData = trash;
         sub2.unsubscribe();
       });
+      
   }
 }

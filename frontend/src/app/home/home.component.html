@@ -6,7 +6,10 @@
           </div>
           <div class="list-group list-group-flush">
               <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="list-group-item list-group-item-action list-group-item-light p-3 add" > add New  <i class="fa fa-user-plus"></i></a>
+              <input type="text" placeholder="admin" *ngIf="this.utility.getUser()?.isadmin == 1">
+
               <label style="color:#6a11cb;" class="displayMode" >displayMode : </label>
+    
 
               <div class="displayMode">
                 <label>
@@ -145,7 +148,9 @@
                 <td>{{customer.email}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.city}}</td>
-                <td><button class="w3-button w3-green"  (click)="Restore(customer)" >Restore</button></td>
+                <td *ngIf="this.utility.getUser()?.isadmin == 1" ><button class="w3-button w3-green"  (click)="Restore(customer)" >Restore</button></td>
+                <td *ngIf="this.utility.getUser()?.isadmin == 1" ><button class="w3-button w3-red"  (click)="Drop(customer)" >Delete</button></td>
+
               </tr>
             </tbody>
           </table>
