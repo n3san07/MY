@@ -51,12 +51,12 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `firstname`, `lastname`, `email`, `phone`, `state`, `country`, `city`, `street`, `housenumber`, `zip`, `info`, `createdby`, `createTime`, `isDeleted`, `gender`) VALUES
-(2, 'Jane', 'Doe', 'jane.doe@email.com', 987654321, 'Texas', 'USA', 'Houston', 'Broadway St', 456, 77001, 'Some additional info', 'Admin', '2023-03-03 00:34:29.000000', 0, 'Female'),
-(3, 'Bob', 'Smith', 'bob.smith@email.com', 2147483647, 'New York', 'USA', 'New York City', '5th Ave', 789, 10001, 'Some additional info', 'Admin', '2023-03-03 00:34:49.000000', 0, 'Male'),
-(4, 'Mary', 'Johnson', 'mary.johnson@email.com', 1112223333, 'Florida', 'USA', 'Miami', 'Ocean Dr', 1011, 33139, 'Some additional info', 'Admin', '2023-03-03 00:35:00.000000', 0, 'Female'),
-(5, 'David', 'Brown', 'david.brown@email.com', 2147483647, 'California', 'USA', 'San Francisco', 'Market St', 1212, 94102, 'Some additional info', 'Admin', '2023-03-03 00:35:14.000000', 0, 'Male'),
-(6, 'Emily', 'Davis', 'emily.davis@email.com', 1231231234, 'Florida', 'USA', 'Orlando', 'Orange Blossom Trl', 1415, 32809, 'Some additional info', 'Admin', '2023-03-03 00:35:28.000000', 0, 'Female'),
-(36, 'John', 'Doe', 'john.doe@email.com', 1234567890, 'California', 'USA', 'Los Angeles', 'Main St', 123, 90001, 'Some additional info', 'Admin', '2023-03-03 00:33:41.000000', 1, 'Male');
+(2, 'Jane', 'Doe', 'jane.doe@email.com', 987654321, 'Texas', 'USA', 'Houston', 'Broadway St', 456, 77001, 'Some additional info', 'Admin', '2023-03-03 00:34:29.000000', 0, 'female'),
+(3, 'Bob', 'Smith', 'bob.smith@email.com', 2147483647, 'New York', 'USA', 'New York City', '5th Ave', 789, 10001, 'Some additional info', 'Admin', '2023-03-03 00:34:49.000000', 0, 'male'),
+(4, 'Mary', 'Johnson', 'mary.johnson@email.com', 1112223333, 'Florida', 'USA', 'Miami', 'Ocean Dr', 1011, 33139, 'Some additional info', 'Admin', '2023-03-03 00:35:00.000000', 0, 'female'),
+(5, 'David', 'Brown', 'david.brown@email.com', 2147483647, 'California', 'USA', 'San Francisco', 'Market St', 1212, 94102, 'Some additional info', 'Admin', '2023-03-03 00:35:14.000000', 0, 'male'),
+(6, 'Emily', 'Davis', 'emily.davis@email.com', 1231231234, 'Florida', 'USA', 'Orlando', 'Orange Blossom Trl', 1415, 32809, 'Some additional info', 'Admin', '2023-03-03 00:35:28.000000', 0, 'female'),
+(36, 'John', 'Doe', 'john.doe@email.com', 1234567890, 'California', 'USA', 'Los Angeles', 'Main St', 123, 90001, 'Some additional info', 'Admin', '2023-03-03 00:33:41.000000', 1, 'male');
 
 -- --------------------------------------------------------
 
