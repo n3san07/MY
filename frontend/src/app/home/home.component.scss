@@ -137,3 +137,9 @@ padding: 2px 2px !important;
 }
 
 }
+ form .ng-dirty.ng-invalid{
+  border-bottom: 5px solid red;
+ }
+ form .ng-dirty.ng-valid{
+  border-bottom: 5px solid green;
+ }
