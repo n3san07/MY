@@ -125,7 +125,7 @@ export class HomeComponent {
 
   addNew() {
     this.addNewForm.value.createdby = this.utility.getUser()?.userName;
-    console.log(this.addNewForm.value);
+    
     const sub = this.http
       .post<customersData[]>(`customer/add`, this.addNewForm.value)
       .subscribe((x) => {
